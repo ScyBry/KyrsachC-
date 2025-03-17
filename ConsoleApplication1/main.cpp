@@ -29,6 +29,8 @@ int playGame(Stack& stack)
             {
                 destroyedBalls += count;
                 chainFound = true;
+
+                std::cout << "Уничтожено " << count << " шариков со значением " << currentBall << std::endl;
             }
             else
             {
@@ -51,72 +53,87 @@ int playGame(Stack& stack)
     return totalDestroyedBalls;
 }
 
-void demonstrateStackMethods()
+void showMethods()
 {
     Stack stack;
 
+    std::cout << "Демонстрация работы стека:\n";
 
+
+    std::cout << "\nЛистинг 4.2 – Добавляем элементы в стек (push)\n";
     stack.push(1);
     stack.push(2);
     stack.push(3);
     std::cout << "Стек после добавления элементов: ";
-    stack.print(); // Ожидаемый вывод: 3 2 1
+    stack.print();
 
-    // ```cpp
-    // Demonstration of pop
+ 
+    std::cout << "\nЛистинг 4.3 – Извлекаем элемент из стека (pop)\n";
     int poppedValue = stack.pop();
-    std::cout << "Извлеченный элемент: " << poppedValue << std::endl; // Ожидаемый вывод: 3
+    std::cout << "Извлеченный элемент: " << poppedValue << std::endl;
     std::cout << "Стек после извлечения элемента: ";
-    stack.print(); // Ожидаемый вывод: 2 1
+    stack.print();
 
-    // Demonstration of peek
+  
+    std::cout << "\nЛистинг 4.4 – Получаем верхний элемент стека (peek)\n";
     int topValue = stack.peek();
-    std::cout << "Верхний элемент стека: " << topValue << std::endl; // Ожидаемый вывод: 2
+    std::cout << "Верхний элемент стека: " << topValue << std::endl;
 
-    // Demonstration of size
-    std::cout << "Размер стека: " << stack.size() << std::endl; // Ожидаемый вывод: 2
+    
+    std::cout << "\nЛистинг 4.5 – Определяем размер стека (size)\n";
+    std::cout << "Размер стека: " << stack.size() << std::endl;
 
-    // Demonstration of isEmpty
-    std::cout << "Стек пуст? " << (stack.isEmpty() ? "Да" : "Нет") << std::endl; // Ожидаемый вывод: Нет
+ 
+    std::cout << "\nЛистинг 4.6 – Проверяем, пуст ли стек (isEmpty)\n";
+    std::cout << "Стек пуст? " << (stack.isEmpty() ? "Да" : "Нет") << std::endl;
 
-    // Demonstration of find
+    
+    std::cout << "\nЛистинг 4.7 – Ищем элемент 1 в стеке (find)\n";
     int index = stack.find(1);
-    std::cout << "Индекс элемента 1: " << index << std::endl; // Ожидаемый вывод: 1
+    std::cout << "Индекс элемента 1: " << index << std::endl;
 
-    // Demonstration of copyPart
+
+    std::cout << "\nЛистинг 4.8 – Ищем максимальный элемент в стеке (findMax)\n";
+    int maxValue = stack.findMax();
+    std::cout << "Максимальный элемент стека: " << maxValue << std::endl;
+
+
+    std::cout << "\nЛистинг 4.9 – Ищем минимальный элемент в стеке (findMin)\n";
+    int minValue = stack.findMin();
+    std::cout << "Минимальный элемент стека: " << minValue << std::endl;
+
+  
+    std::cout << "\nЛистинг 4.10 – Копируем часть стека (copyPart)\n";
     Stack copiedStack = stack.copyPart(0, 1);
     std::cout << "Скопированная часть стека: ";
-    copiedStack.print(); // Ожидаемый вывод: 2 1
+    copiedStack.print();
 
-    // Demonstration of loadFromFile
+  
+    std::cout << "\nЛистинг 4.11 – Загружаем элементы из файла в стек (loadFromFile)\n";
     stack.loadFromFile("data.txt");
     std::cout << "Стек после загрузки из файла: ";
-    stack.print(); // Ожидаемый вывод зависит от содержимого файла
+    stack.print();
 }
 
 int main()
 {
-    SetConsoleCP(1251); // установка кодовой страницы win-cp 1251 в поток ввода
+    SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
     Stack stack;
 
-    // Загрузка данных из файла
     stack.loadFromFile("data.txt");
 
     std::cout << "Исходная цепочка шариков: ";
     stack.print();
 
-    // Запускаем игру
     int destroyed = playGame(stack);
 
-    // Выводим результаты
     std::cout << "Количество уничтоженных шариков: " << destroyed << std::endl;
     std::cout << "Оставшаяся цепочка шариков: ";
     stack.print();
 
-    // Демонстрация работы методов стека
-    demonstrateStackMethods();
+    showMethods();
 
     return 0;
 }
